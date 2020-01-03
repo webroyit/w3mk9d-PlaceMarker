@@ -1,8 +1,8 @@
 const express = require("express");
+const { getPlaces } = require("../controllers/places");
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send("It works");
-})
+router.route("/").get(getPlaces);
 
 module.exports = router;
