@@ -14,9 +14,8 @@ app.use(express.json());
 // enable cors
 app.use(cors());
 
-app.get('/api/v1/places', (req, res) => {
-    res.send("It works");
-})
+// routes
+app.use("/api/v1/places", require("./routes/places"));
 
 const PORT = process.env.PORT || 1000;
 
