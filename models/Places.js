@@ -30,4 +30,19 @@ const PlaceSchema = new mongoose.Schema({
     }
 });
 
+// get the latitude and longitude
+PlaceSchema.pre("save", async function(next){
+    const loc = await geocoder.geocode(this.address);
+    this.location = {
+        type: "Point",
+        coordinates: [loc[0].longitude, loc[0].latitude],
+        formattedAddress: loc[0].formattedAddress
+    }
+
+    // prevent the address from being save to the database
+    this.address = undefined;
+
+    next();
+})
+
 module.exports = mongoose.model("Place", PlaceSchema);
