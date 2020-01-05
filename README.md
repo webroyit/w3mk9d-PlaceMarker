@@ -9,6 +9,7 @@
 - font-awesome [(https://cdnjs.com/libraries/font-awesome)](https://cdnjs.com/libraries/font-awesome)
 - mapquest api [(https://developer.mapquest.com/documentation/)](https://developer.mapquest.com/documentation/)
 - mongoDB 
+- mapbox
 
 ## Dependencies
 - `cors` for enable CORS
