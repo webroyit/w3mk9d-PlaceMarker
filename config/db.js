@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
+const mongoURI = require('./keys').mongoURI;
+
 const connectDB = async () => {
     try{
-        const conn = await mongoose.connect(process.env.MONGO_URI, {
+        const conn = await mongoose.connect(mongoURI, {
             // avoid warning messsage with mongoDB
             useNewUrlParser: true,
             useCreateIndex: true,
