@@ -8,7 +8,19 @@ const map = new mapboxgl.Map({
     center: [-74.2598655, 40.6971494]
 });
 
-function loadMap(){
+// fetch data from the server
+async function getPlaces(){
+    // get data from server
+    const res = await fetch("/api/v1/places");
+    
+    // convert the data to json
+    const data = await res.json();
+
+    console.log(data);
+}
+
+// load map with marker
+function loadMap(places){
     map.on("load", function() {
         map.addLayer({
             id : "points",
@@ -17,30 +29,7 @@ function loadMap(){
                 type: "geojson",
                 data: {
                     type: "FeatureCollection",
-                    features: [
-                        {
-                            type: "Feature",
-                            geometry: {
-                                type: "Point",
-                                coordinates: [-74.2598655, 40.6971494]
-                            },
-                            properties: {
-                                placeId: "0001",
-                                icon: "shop"
-                            }
-                        },
-                        {
-                            type: "Feature",
-                            geometry: {
-                                type: "Point",
-                                coordinates: [-74.1598655, 40.6971494]
-                            },
-                            properties: {
-                                placeId: "0002",
-                                icon: "shop"
-                            }
-                        }
-                    ]
+                    features: places
                 }
             },
             layout: {
@@ -55,4 +44,4 @@ function loadMap(){
     });
 }
 
-loadMap();
+getPlaces();
