@@ -16,7 +16,21 @@ async function getPlaces(){
     // convert the data to json
     const data = await res.json();
 
-    console.log(data);
+    const places = data.data.map(place => {
+        return {
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: [place.location.coordinates[0], place.location.coordinates[1]]
+            },
+            properties: {
+                placeId: place.placeId,
+                icon: "shop"
+            }
+        }
+    });
+
+    loadMap(places);
 }
 
 // load map with marker
