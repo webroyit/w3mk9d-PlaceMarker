@@ -1,5 +1,5 @@
 # WRI Place Marker
-
+Using Mapbox to display a map where you add icon to your map. The template is from Traversy Media youtube channel.
 
 ## Tools
 - html5
